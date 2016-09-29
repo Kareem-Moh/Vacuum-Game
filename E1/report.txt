@@ -1,0 +1,13 @@
+Autotested Results for E1 submitted by Kareem Mohamed (moha1097)
+Generated at 2016-09-29T00:22:54
+
+Summary of Results: 2 out of 2 tests successfully passed
+--
+
+Tests for test_e1.TestE1 (2/2 passed)
+--
+
+1) Testing the contents of the submission directory.                                  .. ok!
+2) Testing the output of the program.                                                 .. ok!
+
+
