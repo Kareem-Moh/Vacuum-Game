@@ -76,6 +76,50 @@ public class VacuumGame {
      ************/
 
   /**
+ * @return the grid
+ */
+public Grid<Sprite> getGrid() {
+	return grid;
+}
+
+/**
+ * @return the vacuum1
+ */
+public Vacuum getVacuumOne() {
+	return vacuum1;
+}
+
+/**
+ * @return the vacuum2
+ */
+public Vacuum getVacuumTwo() {
+	return vacuum2;
+}
+
+public int getNumRows(){
+	return grid.getNumRows();
+}
+
+public int getNumColumns(){
+	return grid.getNumColumns();
+}
+
+public Sprite getSprite(int row, int column){
+	
+}
+
+public void move(char nextMove){
+
+}
+
+public boolean gameOver(){
+	
+}
+
+public char getWinner(){
+	
+}
+/**
    * Returns the dimensions of the grid in the file named layoutFileName.
    * @param layoutFileName path of the input grid file
    * @return an array [numRows, numCols], where numRows is the number
