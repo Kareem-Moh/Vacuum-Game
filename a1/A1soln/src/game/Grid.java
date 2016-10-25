@@ -13,8 +13,14 @@ public abstract class Grid<T> {
 	 */
 	@Override
 	public String toString() {
-		return "Grid [getNumRows()=" + getNumRows() + ", getNumColumns()=" + getNumColumns() + ", hashCode()="
-				+ hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+		String str = "";
+		for (int i=0; i<this.getNumRows();i++){
+			for (int j=0; j<this.getNumColumns();j++){
+				str += this.getCell(i, j);
+			}
+			str += "\n";
+		}
+		return str;
 	}
 	
 	/* (non-Javadoc)

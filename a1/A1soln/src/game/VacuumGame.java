@@ -1,7 +1,6 @@
 package game;
 
 import sprites.CleanHallway;
-import sprites.Dirt;
 import sprites.Dumpster;
 import sprites.Dust;
 import sprites.DustBall;
