@@ -31,6 +31,9 @@ public class Vacuum extends Sprite {
 		this.capacity = capacity;
 		this.fullness = fullness;
 		this.under = under;
+		capacity = Constants.CAPACITY;
+		fullness = Constants.EMPTY;
+		
 	}
 	/**
 	 * Switches the coordinates of the Vacuum object accordingly
@@ -93,7 +96,7 @@ public class Vacuum extends Sprite {
 	public boolean clean(){
 		//Checks if the vacuum is already full
 		if (this.fullness >= capacity){
-			//If so do nothing and return falso
+			//If so do nothing and return false
 			return false;
 		}
 		//Otherwise
@@ -101,11 +104,17 @@ public class Vacuum extends Sprite {
 			//Checks if the 
 			if (this.getUnder().getSymbol() == Constants.DUST){
 				this.setScore(this.score + Constants.DUST_SCORE);
+				this.fullness++;
+				this.setUnder(ch);
 			}
 			else if(this.getUnder().getSymbol() == Constants.DUST_BALL){
 				this.setScore(this.score + Constants.DUST_BALL_SCORE);
+				this.fullness++;
+				this.setUnder(ch);
 			}
-			this.setUnder(ch);
+			else if(this.getUnder().getSymbol() == Constants.DUMPSTER){
+				this.setFullness(Constants.EMPTY);
+			}
 			return true;
 		}
 	}
