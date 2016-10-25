@@ -142,7 +142,6 @@ public class VacuumGame {
 	}
 
 	public void move(char nextMove){
-		moveDustBalls();
 		if (nextMove == Constants.P1_LEFT){
 			//Check if the left is safe to move to
 			boolean valid1 = (grid.getCell(vacuum1.getRow(), vacuum1.getColumn()-1) instanceof Dust);
@@ -156,8 +155,16 @@ public class VacuumGame {
 				vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
-				//Clean whatever is underneath the new vacuum
+				
+				int prevScore = vacuum1.getScore();
 				vacuum1.clean();
+				if (vacuum1.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum1.getRow())&&(dustBalls.get(i).getColumn() ==vacuum1.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P2_LEFT){
@@ -173,8 +180,15 @@ public class VacuumGame {
 				vacuum2.setUnder(grid.getCell(vacuum2.getRow(), vacuum2.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum2.getScore();
 				vacuum2.clean();
+				if (vacuum2.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum2.getRow())&&(dustBalls.get(i).getColumn() ==vacuum2.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P1_UP){
@@ -190,9 +204,15 @@ public class VacuumGame {
 				vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
-
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum1.getScore();
 				vacuum1.clean();
+				if (vacuum1.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum1.getRow())&&(dustBalls.get(i).getColumn() ==vacuum1.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P2_UP){
@@ -208,8 +228,15 @@ public class VacuumGame {
 				vacuum2.setUnder(grid.getCell(vacuum2.getRow(), vacuum2.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum2.getScore();
 				vacuum2.clean();
+				if (vacuum2.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum2.getRow())&&(dustBalls.get(i).getColumn() ==vacuum2.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P1_RIGHT){
@@ -225,9 +252,15 @@ public class VacuumGame {
 				vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
-
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum1.getScore();
 				vacuum1.clean();
+				if (vacuum1.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum1.getRow())&&(dustBalls.get(i).getColumn() ==vacuum1.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P2_RIGHT){
@@ -243,8 +276,15 @@ public class VacuumGame {
 				vacuum2.setUnder(grid.getCell(vacuum2.getRow(), vacuum2.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum2.getScore();
 				vacuum2.clean();
+				if (vacuum2.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum2.getRow())&&(dustBalls.get(i).getColumn() ==vacuum2.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P1_DOWN){
@@ -260,9 +300,15 @@ public class VacuumGame {
 				vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
-
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum1.getScore();
 				vacuum1.clean();
+				if (vacuum1.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum1.getRow())&&(dustBalls.get(i).getColumn() ==vacuum1.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
 		}
 		else if (nextMove == Constants.P2_DOWN){
@@ -278,9 +324,17 @@ public class VacuumGame {
 				vacuum2.setUnder(grid.getCell(vacuum2.getRow(), vacuum2.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
-				//Clean whatever is underneath the new vacuum
+				int prevScore = vacuum2.getScore();
 				vacuum2.clean();
+				if (vacuum2.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
+					for (int i=0; i<dustBalls.size();i++){
+						if ((dustBalls.get(i).getRow() == vacuum2.getRow())&&(dustBalls.get(i).getColumn() ==vacuum2.getColumn())){
+							dustBalls.remove(i);
+						}
+					}
+				}
 			}
+			moveDustBalls();
 		}
 	}
 
@@ -340,33 +394,37 @@ public class VacuumGame {
 			int randomNum = random.nextInt((4 - 1) + 1) + 1;
 			Dust dust = new Dust(Constants.DUST, dustBalls.get(k).getRow(), dustBalls.get(k).getColumn());
 			if (randomNum == 1){
-				if (grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1) instanceof CleanHallway){
-					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1);
+				if ((grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1) instanceof CleanHallway)||
+						(grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1) instanceof Dust)){
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
-					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1, dustBalls.get(k));
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
 				}
 			}
 			else if (randomNum == 2){
-				if (grid.getCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn()) instanceof CleanHallway){
-					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn());
+				if ((grid.getCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn()) instanceof CleanHallway)||
+						(grid.getCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn()) instanceof Dust)){
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
-					grid.setCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn(), dustBalls.get(k));
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn());
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
 
 				}
 			}
 			else if (randomNum == 3){
-				if (grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1) instanceof CleanHallway){
-					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1);
+				if ((grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1) instanceof CleanHallway)||
+						(grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1) instanceof Dust)){
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
-					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1, dustBalls.get(k));
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
 					
 				}
 			}
 			else if (randomNum == 4){
-				if (grid.getCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn()) instanceof CleanHallway){
-					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn());
+				if ((grid.getCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn()) instanceof CleanHallway)||
+						(grid.getCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn()) instanceof Dust)){
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
-					grid.setCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn(), dustBalls.get(k));
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn());
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
 
 				}
 			}
