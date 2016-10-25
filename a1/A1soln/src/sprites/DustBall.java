@@ -16,7 +16,7 @@ public class DustBall extends Sprite {
 	public DustBall(char symbol, int row, int column) {
 		super(symbol, row, column);
 	}
-	
+
 	/**
 	 * Randomly moves the dust ball one unit across the ball
 	 */

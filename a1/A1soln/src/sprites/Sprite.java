@@ -8,11 +8,11 @@ package sprites;
  *A class to represent Sprites
  */
 public abstract class Sprite {
-	
+
 	private char symbol;
 	private int row;
 	private int column;
-	
+
 	/**
 	 * @param symbol
 	 * @param row
@@ -70,7 +70,7 @@ public abstract class Sprite {
 			boolean symbolMatch = (this.getSymbol() == ((Sprite) obj).getSymbol());
 			boolean rowMatch = (this.getRow() == ((Sprite) obj).getRow());
 			boolean colMatch = (this.getColumn() == ((Sprite) obj).getColumn());
-			
+
 			return ((rowMatch == colMatch) & symbolMatch);
 		}
 		// If obj can't use .getSymbol(), therefore isn't a Sprite
@@ -92,12 +92,12 @@ public abstract class Sprite {
 	public void setColumn(int column) {
 		this.column = column;
 	}
-	
+
 	protected void updateCoordinates(int row, int column){
 		this.setRow(row);
 		this.setColumn(column);
 	}
-	
+
 	@Override
 	public String toString(){
 		return String.valueOf(this.getSymbol());

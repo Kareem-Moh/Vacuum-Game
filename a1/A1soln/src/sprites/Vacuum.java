@@ -15,7 +15,7 @@ public class Vacuum extends Sprite {
 	private int fullness;
 	private Sprite under;
 	private Sprite ch = new CleanHallway(Constants.CLEAN, this.getRow(), this.getColumn());
-	
+
 	/**
 	 * @param symbol
 	 * @param row
@@ -33,7 +33,7 @@ public class Vacuum extends Sprite {
 		this.under = under;
 		capacity = Constants.CAPACITY;
 		fullness = Constants.EMPTY;
-		
+
 	}
 	/**
 	 * Switches the coordinates of the Vacuum object accordingly
@@ -55,7 +55,7 @@ public class Vacuum extends Sprite {
 	public int getScore() {
 		return score;
 	}
-	
+
 	/**
 	 * Sets the score
 	 */
@@ -80,14 +80,14 @@ public class Vacuum extends Sprite {
 	private void setFullness(int fullness){
 		this.fullness = fullness;
 	}
-	
+
 	/**
 	 * Empties the vacuum of its contents, reduces fullness to zero
 	 */
 	public void empty(){
 		this.setFullness(Constants.EMPTY);
 	}
-	
+
 	/**
 	 * If the vacuum is not full, this method cleans the 
 	 * dustball/dust and adds to the score of the player
