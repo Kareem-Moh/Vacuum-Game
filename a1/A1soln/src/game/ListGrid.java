@@ -2,7 +2,10 @@
  * 
  */
 package game;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Kareem
@@ -10,23 +13,36 @@ import java.util.List;
  */
 public class ListGrid<T> extends Grid<T> {
 	private List<List<T>> grid;
+	private int numRows;
+	private int numColumns;
+	private T t;
 
 
 	/**
 	 * @param grid
+	 * @param numRows
+	 * @param numColumns
 	 */
-	public ListGrid(List<List<T>> grid) {
+	public ListGrid(int numRows, int numColumns) {
 		super();
-		this.grid = grid;
+		this.numRows = numRows;
+		this.numColumns = numColumns;
+		this.grid = new ArrayList<List<T>>();
+		for (int i = 0; i<numRows; i++){
+			List<T> row = new ArrayList<T>();
+			for (int j = 0; j<numColumns; j++){
+				row.add(j, t);
+			}
+			this.grid.add(i, row);
+		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see game.Grid#getCell(int, int)
 	 */
 	@Override
 	public T getCell(int row, int column) {
-		// TODO Auto-generated method stub
-		return null;
+		return (grid.get(row)).get(column);
 	}
 
 	/* (non-Javadoc)
@@ -34,8 +50,7 @@ public class ListGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public void setCell(int row, int column, T item) {
-		// TODO Auto-generated method stub
-
+		(grid.get(row)).add(column, item);
 	}
 
 	/* (non-Javadoc)
@@ -43,8 +58,7 @@ public class ListGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public int getNumRows() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numRows;
 	}
 
 	/* (non-Javadoc)
@@ -52,17 +66,17 @@ public class ListGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public int getNumColumns() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numColumns;
 	}
 
 	/* (non-Javadoc)
-	 * @see game.Grid#hashCode()
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((grid == null) ? 0 : grid.hashCode());
+		return result;
 	}
-
 }

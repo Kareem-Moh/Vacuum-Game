@@ -92,4 +92,14 @@ public abstract class Sprite {
 	public void setColumn(int column) {
 		this.column = column;
 	}
+	
+	protected void updateCoordinates(int row, int column){
+		this.setRow(row);
+		this.setColumn(column);
+	}
+	
+	@Override
+	public String toString(){
+		return String.valueOf(this.getSymbol());
+	}
 }

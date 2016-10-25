@@ -22,7 +22,23 @@ public abstract class Grid<T> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		if (obj instanceof Grid){
+			boolean numRowsBool = (this.getNumRows() == ((Grid) obj).getNumRows());
+			boolean numColsBool = (this.getNumColumns() == ((Grid) obj).getNumColumns());
+			boolean sameSprites = true;
+			for (int i = 1; i<this.getNumRows(); i++){
+				for (int j = 1; j<this.getNumColumns(); j++){
+					if (this.getCell(i, j) != ((Grid) obj).getCell(i,j)){
+						sameSprites = false;
+						break;
+					}
+				}
+			}
+			return (numRowsBool && numColsBool && sameSprites);
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public abstract T getCell(int row, int column);

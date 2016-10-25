@@ -9,7 +9,7 @@ public class Constants {
   enum UiType { TEXT, GUI; }
 
   // set the following constants:
-  public static final String FILENAME = "/home/anya/b07/assignment/grid2.txt"; // set to input path
+  public static final String FILENAME = "C:/Users/Kareem/Documents/moha1097/grid1.txt"; // set to input path
   public static final UiType UI_TYPE = UiType.GUI; // set to a UiType
   public static final GridType GRID_TYPE = GridType.MAP_GRID; // set a GridType  
   
