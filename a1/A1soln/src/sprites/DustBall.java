@@ -3,8 +3,6 @@
  */
 package sprites;
 
-import java.util.Random;
-
 /**
  * @author Kareem
  *
@@ -23,7 +21,6 @@ public class DustBall extends Sprite {
 	 * Randomly moves the dust ball one unit across the ball
 	 */
 	public void moveTo(int row, int column){
-		this.setRow(row);
-		this.setColumn(column);
+		this.updateCoordinates(row, column);
 	}
 }
