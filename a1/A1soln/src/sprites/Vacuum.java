@@ -14,6 +14,7 @@ public class Vacuum extends Sprite {
 	private int capacity;
 	private int fullness;
 	private Sprite under;
+	private Sprite ch = new CleanHallway(Constants.CLEAN, this.getRow(), this.getColumn());
 	
 	/**
 	 * @param symbol
@@ -33,14 +34,16 @@ public class Vacuum extends Sprite {
 	}
 	/**
 	 * Switches the coordinates of the Vacuum object accordingly
+	 * Cleans dust if possible
 	 * @return void
 	 */
 	public void moveTo(int row, int column){
-		if (row >= 1){
-			this.setRow(row);
+		this.updateCoordinates(row, column);
+		if (this.getUnder() instanceof Dirt){
+			this.clean();
 		}
-		if (column >= 1){
-			this.setColumn(column);
+		else if (this.getUnder() instanceof Dumpster){
+			this.empty();
 		}
 	}
 	/**
@@ -102,7 +105,6 @@ public class Vacuum extends Sprite {
 			else if(this.getUnder().getSymbol() == Constants.DUST_BALL){
 				this.setScore(this.score + Constants.DUST_BALL_SCORE);
 			}
-			Sprite ch = new CleanHallway(Constants.CLEAN, this.getRow(), this.getColumn());
 			this.setUnder(ch);
 			return true;
 		}

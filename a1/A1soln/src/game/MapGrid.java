@@ -2,6 +2,7 @@
  * 
  */
 package game;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,14 +11,27 @@ import java.util.Map;
  */
 public class MapGrid<T> extends Grid<T> {
 	private Map<Integer, Map<Integer,T>> grid;
-	
-	
+	private int numRows;
+	private int numColumns;
+	private T t;
+
 	/**
 	 * @param grid
+	 * @param numRows
+	 * @param numColumns
 	 */
-	public MapGrid(Map<Integer, Map<Integer, T>> grid) {
+	public MapGrid(int numRows, int numColumns) {
 		super();
-		this.grid = grid;
+		this.numRows = numRows;
+		this.numColumns = numColumns;
+		this.grid = new HashMap<Integer, Map<Integer, T>>();
+		for (int i = 0; i<numRows; i++){
+			Map<Integer, T> row = new HashMap<Integer, T>();
+			for (int j = 0; j<numColumns; j++){
+				row.put(j, t);
+			}
+			this.grid.put(i, row);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -25,8 +39,8 @@ public class MapGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public T getCell(int row, int column) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.grid.get(row).get(column);
+		
 	}
 
 	/* (non-Javadoc)
@@ -34,8 +48,7 @@ public class MapGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public void setCell(int row, int column, T item) {
-		// TODO Auto-generated method stub
-
+		grid.get(row).put(column, item);
 	}
 
 	/* (non-Javadoc)
@@ -43,8 +56,7 @@ public class MapGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public int getNumRows() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numRows;
 	}
 
 	/* (non-Javadoc)
@@ -52,17 +64,38 @@ public class MapGrid<T> extends Grid<T> {
 	 */
 	@Override
 	public int getNumColumns() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numColumns;
 	}
 
 	/* (non-Javadoc)
-	 * @see game.Grid#hashCode()
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((grid == null) ? 0 : grid.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MapGrid other = (MapGrid) obj;
+		if (grid == null) {
+			if (other.grid != null)
+				return false;
+		} else if (!grid.equals(other.grid))
+			return false;
+		return true;
 	}
 
 }

@@ -66,7 +66,38 @@ public class VacuumGame {
       /******** 
        * Initialize the grid
        ********/
-      
+      for (int col = 0; col < numColumns; col++){
+    	  if (nextLine.charAt(col) == Constants.WALL){
+    		  Sprite wall = new Wall (Constants.WALL, row, col);
+    		  grid.setCell(row, col, wall);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.CLEAN){
+    		  Sprite ch = new CleanHallway (Constants.CLEAN, row, col);
+    		  grid.setCell(row, col, ch);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.DUMPSTER){
+    		  Sprite dumpster = new Dumpster (Constants.DUMPSTER, row, col);
+    		  grid.setCell(row, col, dumpster);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.DUST){
+    		  Sprite dust = new Dust (Constants.DUST, row, col);
+    		  grid.setCell(row, col, dust);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.DUST_BALL){
+    		  Sprite db = new DustBall (Constants.DUST_BALL, row, col);
+    		  grid.setCell(row, col, db);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.P1){
+    		  Sprite ch2 = new CleanHallway(Constants.CLEAN, row, col);
+    		  vacuum1 = new Vacuum (Constants.P1, row, col, Constants.INIT_SCORE, Constants.CAPACITY, Constants.EMPTY, ch2);
+    		  grid.setCell(row, col, vacuum1);
+    	  }
+    	  else if (nextLine.charAt(col) == Constants.P2){
+    		  Sprite ch3 = new CleanHallway(Constants.CLEAN, row, col);
+    		  vacuum2 = new Vacuum (Constants.P2, row, col, Constants.INIT_SCORE, Constants.CAPACITY, Constants.EMPTY, ch3);
+    		  grid.setCell(row, col, vacuum2);
+    	  }
+      }
     }
     sc.close();
   }
@@ -105,19 +136,94 @@ public int getNumColumns(){
 }
 
 public Sprite getSprite(int row, int column){
-	
+	return grid.getCell(row, column);
 }
 
 public void move(char nextMove){
-
+	if (nextMove == Constants.P1_LEFT){
+		//Check if the left is safe to move to
+		boolean valid1 = (grid.getCell(vacuum1.getRow(), vacuum1.getColumn()-1) instanceof Dirt);
+		boolean valid2 = (grid.getCell(vacuum1.getRow(), vacuum1.getColumn()-1) instanceof CleanHallway);
+		if (valid1 || valid2){
+			//Move the vacuum
+			vacuum1.moveTo(vacuum1.getRow(), (vacuum1.getColumn())-1);
+			vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
+			//Set the new location of the vacuum to the same vacuum sprite
+			grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
+			//Clean whatever is underneath the new vacuum
+			vacuum1.clean();
+		}
+	}
+	else if (nextMove == Constants.P2_LEFT){
+		//Check if the left is safe to move to
+		boolean valid1 = (grid.getCell(vacuum2.getRow(), vacuum2.getColumn()-1) instanceof Dirt);
+		boolean valid2 = (grid.getCell(vacuum2.getRow(), vacuum2.getColumn()-1) instanceof CleanHallway);
+		if (valid1 || valid2){
+			//Move the vacuum
+			vacuum2.moveTo(vacuum2.getRow(), (vacuum2.getColumn())-1);
+			vacuum2.setUnder(grid.getCell(vacuum2.getRow(), vacuum2.getColumn()));
+			//Set the new location of the vacuum to the same vacuum sprite
+			grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);
+			//Clean whatever is underneath the new vacuum
+			vacuum2.clean();
+		}
+	}
+	if (nextMove == Constants.P1_UP){
+		//Check if the left is safe to move to
+		boolean valid1 = (grid.getCell(vacuum1.getRow()-1, vacuum1.getColumn()) instanceof Dirt);
+		boolean valid2 = (grid.getCell(vacuum1.getRow()-1, vacuum1.getColumn()) instanceof CleanHallway);
+		if (valid1 || valid2){
+			//Move the vacuum
+			vacuum1.moveTo(vacuum1.getRow()-1, (vacuum1.getColumn()));
+			vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
+			//Set the new location of the vacuum to the same vacuum sprite
+			grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
+			//Clean whatever is underneath the new vacuum
+			vacuum1.clean();
+		}
+	}
+	else if (nextMove == Constants.P2_UP){
+		vacuum2.moveTo(vacuum2.getRow()-1, (vacuum2.getColumn()));
+	}
+	else if (nextMove == Constants.P1_RIGHT){
+		vacuum1.moveTo(vacuum1.getRow(), (vacuum1.getColumn()+1));
+	}
+	else if (nextMove == Constants.P2_RIGHT){
+		vacuum2.moveTo(vacuum2.getRow(), (vacuum1.getColumn()+1));
+	}
+	else if (nextMove == Constants.P1_DOWN){
+		vacuum1.moveTo(vacuum1.getRow()+1, (vacuum1.getColumn()));
+	}
+	else if (nextMove == Constants.P2_DOWN){
+		vacuum2.moveTo(vacuum2.getRow()+1, (vacuum1.getColumn()));
+	}
+	//int randomNum = random.nextInt((4 - 1) + 1) + 1;
+	//if (randomNum)
 }
 
 public boolean gameOver(){
-	
+	boolean noDirt = true;
+	for (int i = 0; i<grid.getNumRows(); i++){
+		for (int j = 0; j<grid.getNumColumns(); j++){
+			if (grid.getCell(i, j) instanceof Dirt){
+				noDirt = false;
+				break;
+			}
+		}
+	}
+	return false;
 }
 
 public char getWinner(){
-	
+	if (vacuum1.getScore() > vacuum2.getScore()){
+		return Constants.P1;
+	}
+	else if (vacuum1.getScore() < vacuum2.getScore()){
+		return Constants.P2;
+	}
+	else{
+		return Constants.TIE;
+	}
 }
 /**
    * Returns the dimensions of the grid in the file named layoutFileName.
