@@ -415,7 +415,6 @@ public class VacuumGame {
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
 					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1);
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
-
 				}
 			}
 			else if (randomNum == 4){
@@ -424,7 +423,6 @@ public class VacuumGame {
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
 					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn());
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
-
 				}
 			}
 		}
