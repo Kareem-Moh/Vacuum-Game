@@ -333,8 +333,8 @@ public class VacuumGame {
 					}
 				}
 			}
-			moveDustBalls();
 		}
+		moveDustBalls();
 	}
 
 	public boolean gameOver(){
