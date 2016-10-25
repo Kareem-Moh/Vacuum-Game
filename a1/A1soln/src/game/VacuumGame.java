@@ -80,12 +80,14 @@ public class VacuumGame {
 					grid.setCell(row, col, dumpster);
 				}
 				else if (nextLine.charAt(col) == Constants.DUST){
-					Sprite dust = new Dust (Constants.DUST, row, col);
+					Dust dust = new Dust (Constants.DUST, row, col);
 					grid.setCell(row, col, dust);
+					dusts.add(dust);
 				}
 				else if (nextLine.charAt(col) == Constants.DUST_BALL){
-					Sprite db = new DustBall (Constants.DUST_BALL, row, col);
+					DustBall db = new DustBall (Constants.DUST_BALL, row, col);
 					grid.setCell(row, col, db);
+					dustBalls.add(db);
 				}
 				else if (nextLine.charAt(col) == Constants.P1){
 					Sprite ch2 = new CleanHallway(Constants.CLEAN, row, col);
@@ -140,6 +142,7 @@ public class VacuumGame {
 	}
 
 	public void move(char nextMove){
+		moveDustBalls();
 		if (nextMove == Constants.P1_LEFT){
 			//Check if the left is safe to move to
 			boolean valid1 = (grid.getCell(vacuum1.getRow(), vacuum1.getColumn()-1) instanceof Dust);
@@ -172,7 +175,6 @@ public class VacuumGame {
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
 				//Clean whatever is underneath the new vacuum
 				vacuum2.clean();
-
 			}
 		}
 		else if (nextMove == Constants.P1_UP){
@@ -208,7 +210,6 @@ public class VacuumGame {
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
 				//Clean whatever is underneath the new vacuum
 				vacuum2.clean();
-
 			}
 		}
 		else if (nextMove == Constants.P1_RIGHT){
@@ -244,7 +245,6 @@ public class VacuumGame {
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
 				//Clean whatever is underneath the new vacuum
 				vacuum2.clean();
-
 			}
 		}
 		else if (nextMove == Constants.P1_DOWN){
@@ -280,34 +280,6 @@ public class VacuumGame {
 				grid.setCell(vacuum2.getRow(), vacuum2.getColumn(), vacuum2);			
 				//Clean whatever is underneath the new vacuum
 				vacuum2.clean();
-			}
-		}
-		for (int i = 0; i<dustBalls.size(); i++){
-			int randomNum = random.nextInt((4 - 1) + 1) + 1;
-			Sprite dust = new Dust(Constants.DUST, dustBalls.get(i).getRow(), dustBalls.get(i).getColumn());
-			if (randomNum == 1){
-				if (grid.getCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()-1) instanceof CleanHallway){
-					grid.setCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()-1, dust);
-					grid.setCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()-1, dustBalls.get(i));
-				}
-			}
-			else if (randomNum == 2){
-				if (grid.getCell(dustBalls.get(i).getRow()-1, dustBalls.get(i).getColumn()) instanceof CleanHallway){
-					grid.setCell(dustBalls.get(i).getRow()-1, dustBalls.get(i).getColumn(), dust);
-					grid.setCell(dustBalls.get(i).getRow()-1, dustBalls.get(i).getColumn(), dustBalls.get(i));
-				}
-			}
-			else if (randomNum == 3){
-				if (grid.getCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()+1) instanceof CleanHallway){
-					grid.setCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()+1, dust);
-					grid.setCell(dustBalls.get(i).getRow(), dustBalls.get(i).getColumn()+1, dustBalls.get(i));
-				}
-			}
-			else if (randomNum == 4){
-				if (grid.getCell(dustBalls.get(i).getRow()+1, dustBalls.get(i).getColumn()) instanceof CleanHallway){
-					grid.setCell(dustBalls.get(i).getRow()+1, dustBalls.get(i).getColumn(), dust);
-					grid.setCell(dustBalls.get(i).getRow()+1, dustBalls.get(i).getColumn(), dustBalls.get(i));
-				}
 			}
 		}
 	}
@@ -362,4 +334,42 @@ public class VacuumGame {
 		sc.close();
 		return new int[]{numRows, numCols};
 	}  
+	
+	private void moveDustBalls(){
+		for (int k = 0; k < dustBalls.size(); k++){
+			int randomNum = random.nextInt((4 - 1) + 1) + 1;
+			Dust dust = new Dust(Constants.DUST, dustBalls.get(k).getRow(), dustBalls.get(k).getColumn());
+			if (randomNum == 1){
+				if (grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1) instanceof CleanHallway){
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()-1, dustBalls.get(k));
+				}
+			}
+			else if (randomNum == 2){
+				if (grid.getCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn()) instanceof CleanHallway){
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn());
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
+					grid.setCell(dustBalls.get(k).getRow()-1, dustBalls.get(k).getColumn(), dustBalls.get(k));
+
+				}
+			}
+			else if (randomNum == 3){
+				if (grid.getCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1) instanceof CleanHallway){
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1, dustBalls.get(k));
+					
+				}
+			}
+			else if (randomNum == 4){
+				if (grid.getCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn()) instanceof CleanHallway){
+					dustBalls.get(k).moveTo(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn());
+					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
+					grid.setCell(dustBalls.get(k).getRow()+1, dustBalls.get(k).getColumn(), dustBalls.get(k));
+
+				}
+			}
+		}
+	}
 }
