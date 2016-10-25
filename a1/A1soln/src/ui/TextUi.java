@@ -11,7 +11,7 @@ import game.VacuumGame;
 public class TextUi implements Ui{
 
 	private VacuumGame game;
-	
+
 	/**
 	 * 
 	 */
@@ -19,12 +19,12 @@ public class TextUi implements Ui{
 		super();
 	}
 
-	
+
 	public void launchGame(){
-		
+		System.out.println(game.getGrid());
 	}
-	
+
 	public void displayWinner(){
-		
+
 	}
 }

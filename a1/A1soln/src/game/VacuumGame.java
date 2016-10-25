@@ -154,7 +154,7 @@ public class VacuumGame {
 				vacuum1.setUnder(grid.getCell(vacuum1.getRow(), vacuum1.getColumn()));
 				//Set the new location of the vacuum to the same vacuum sprite
 				grid.setCell(vacuum1.getRow(), vacuum1.getColumn(), vacuum1);
-				
+
 				int prevScore = vacuum1.getScore();
 				vacuum1.clean();
 				if (vacuum1.getScore() == (prevScore + Constants.DUST_BALL_SCORE)){
@@ -387,7 +387,7 @@ public class VacuumGame {
 		sc.close();
 		return new int[]{numRows, numCols};
 	}  
-	
+
 	private void moveDustBalls(){
 		for (int k = 0; k < dustBalls.size(); k++){
 			int randomNum = random.nextInt((4 - 1) + 1) + 1;
@@ -415,7 +415,7 @@ public class VacuumGame {
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dust);
 					dustBalls.get(k).moveTo(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn()+1);
 					grid.setCell(dustBalls.get(k).getRow(), dustBalls.get(k).getColumn(), dustBalls.get(k));
-					
+
 				}
 			}
 			else if (randomNum == 4){

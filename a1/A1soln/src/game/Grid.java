@@ -22,7 +22,7 @@ public abstract class Grid<T> {
 		}
 		return str;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -46,11 +46,11 @@ public abstract class Grid<T> {
 			return false;
 		}
 	}
-	
+
 	public abstract T getCell(int row, int column);
 	public abstract void setCell(int row, int column, T item);
 	public abstract int getNumRows();
 	public abstract int getNumColumns();
 	public abstract int hashCode();
-	
+
 }

@@ -40,7 +40,7 @@ public class MapGrid<T> extends Grid<T> {
 	@Override
 	public T getCell(int row, int column) {
 		return this.grid.get(row).get(column);
-		
+
 	}
 
 	/* (non-Javadoc)

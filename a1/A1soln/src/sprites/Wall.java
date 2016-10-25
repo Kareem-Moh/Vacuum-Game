@@ -8,7 +8,7 @@ package sprites;
  *
  */
 public class Wall extends Sprite {
-	
+
 	/**
 	 * @param symbol
 	 * @param row
