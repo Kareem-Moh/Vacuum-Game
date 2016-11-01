@@ -26,12 +26,12 @@ import java.util.Scanner;
  */
 public class VacuumGame {
 
-	private Random random;            // a random number generator to move the DustBalls
-	private Grid<Sprite> grid;        // the grid
-	private Vacuum vacuum1;           // the first player
-	private Vacuum vacuum2;           // the second player
-	private List<Dust> dusts;         // the dusts
-	private List<DustBall> dustBalls; // the dust balls
+	private static Random random;            // a random number generator to move the DustBalls
+	private static Grid<Sprite> grid;        // the grid
+	private static Vacuum vacuum1;           // the first player
+	private static Vacuum vacuum2;           // the second player
+	private static List<Dust> dusts;         // the dusts
+	private static List<DustBall> dustBalls; // the dust balls
 
 	/**
 	 * Creates a new <code>VacuumGame</code> that corresponds to the given input text file. Assumes
@@ -140,7 +140,7 @@ public class VacuumGame {
 		return grid.getCell(row, column);
 	}
 
-	public void move(char nextMove){
+	public static void move(char nextMove){
 		if (nextMove == Constants.P1_LEFT){
 			//Check if the left is safe to move to
 			boolean valid1 = (grid.getCell(vacuum1.getRow(), vacuum1.getColumn()-1) instanceof Dust);
@@ -388,7 +388,7 @@ public class VacuumGame {
 		return new int[]{numRows, numCols};
 	}  
 
-	private void moveDustBalls(){
+	private static void moveDustBalls(){
 		for (int k = 0; k < dustBalls.size(); k++){
 			if ((dustBalls.get(k).getCoordinates() != vacuum1.getCoordinates())||((dustBalls.get(k).getCoordinates() != vacuum2.getCoordinates()))){
 				int randomNum = random.nextInt((5 - 1) + 1) + 1;
