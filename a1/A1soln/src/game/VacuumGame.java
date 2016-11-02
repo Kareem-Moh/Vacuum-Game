@@ -92,11 +92,17 @@ public class VacuumGame {
 					Sprite ch2 = new CleanHallway(Constants.CLEAN, row, col);
 					vacuum1 = new Vacuum (Constants.P1, row, col, Constants.INIT_SCORE, Constants.CAPACITY, Constants.EMPTY, ch2);
 					grid.setCell(row, col, vacuum1);
+					if (vacuum1.getUnder() instanceof DustBall){
+						dustBalls.add(new DustBall (Constants.DUST_BALL, row, col));
+					}
 				}
 				else if (nextLine.charAt(col) == Constants.P2){
 					Sprite ch3 = new CleanHallway(Constants.CLEAN, row, col);
 					vacuum2 = new Vacuum (Constants.P2, row, col, Constants.INIT_SCORE, Constants.CAPACITY, Constants.EMPTY, ch3);
 					grid.setCell(row, col, vacuum2);
+					if (vacuum2.getUnder() instanceof DustBall){
+						dustBalls.add(new DustBall (Constants.DUST_BALL, row, col));
+					}
 				}
 			}
 		}
@@ -390,7 +396,9 @@ public class VacuumGame {
 
 	private static void moveDustBalls(){
 		for (int k = 0; k < dustBalls.size(); k++){
-			if ((dustBalls.get(k).getCoordinates() != vacuum1.getCoordinates())||((dustBalls.get(k).getCoordinates() != vacuum2.getCoordinates()))){
+			boolean valid1 = (dustBalls.get(k).getCoordinates().equals(vacuum1.getCoordinates()));
+			boolean valid2 = (dustBalls.get(k).getCoordinates().equals(vacuum2.getCoordinates()));
+			if  (!valid1&&!valid2){
 				int randomNum = random.nextInt((5 - 1) + 1) + 1;
 				Dust dust = new Dust(Constants.DUST, dustBalls.get(k).getRow(), dustBalls.get(k).getColumn());
 				if (randomNum == 1){
