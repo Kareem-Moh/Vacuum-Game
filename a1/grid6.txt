@@ -1,0 +1,9 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XU                              UX
+X        o     1         o       X
+XU                              UX
+XXXXXXXXXXXXXXXXUUXXXXXXXXXXXXXXXX
+XU                              UX
+X        o        2      o       X
+XU                              UX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
